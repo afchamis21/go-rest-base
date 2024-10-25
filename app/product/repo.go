@@ -1,4 +1,4 @@
-package repo
+package product
 
 import (
 	"alura-go-base/types"

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"alura-go-base/app/config"
+	"alura-go-base/config"
 	"log"
 	"os"
 

@@ -1,7 +1,7 @@
 package types
 
 import (
-	"alura-go-base/app/errors"
+	"alura-go-base/errors"
 	"net/http"
 )
 
@@ -35,7 +35,7 @@ type IProductService interface {
 }
 
 type IProductRouter interface {
-	Handler
+	IHandler
 	HandleCreateProduct(w http.ResponseWriter, r *http.Request)
 	HandleDeleteProduct(w http.ResponseWriter, r *http.Request)
 	HandleGetProductBySKU(w http.ResponseWriter, r *http.Request)

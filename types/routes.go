@@ -2,6 +2,6 @@ package types
 
 import "github.com/gorilla/mux"
 
-type Handler interface {
+type IHandler interface {
 	RegisterHandlers(router *mux.Router)
 }

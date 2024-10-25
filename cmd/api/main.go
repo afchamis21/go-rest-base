@@ -1,12 +1,11 @@
 package main
 
 import (
-	"alura-go-base/app/config"
-	"alura-go-base/app/db"
-	"alura-go-base/app/repo"
-	"alura-go-base/app/services"
-	"alura-go-base/server/middleware"
-	"alura-go-base/server/routes"
+	"alura-go-base/app/auth"
+	"alura-go-base/app/product"
+	"alura-go-base/app/user"
+	"alura-go-base/config"
+	"alura-go-base/db"
 	"alura-go-base/types"
 	"fmt"
 	"log"
@@ -52,22 +51,26 @@ func main() {
 
 	database := db.ConnectToDatabase()
 
-	productStorage := repo.NewProductRepo(database)
-	productService := services.NewProductService(productStorage)
-	productRouter := routes.NewProductRouter(productService, secureRouter)
+	// =========== repo, service, router ===========
 
-	userStorage := repo.NewUserRepo(database)
-	userService := services.NewUserService(userStorage)
-	userRouter := routes.NewUserRouter(userService, secureRouter)
+	productStorage := product.NewProductRepo(database)
+	productService := product.NewProductService(productStorage)
+	productRouter := product.NewProductRouter(productService, secureRouter)
 
-	authService := services.NewAuthService(*userService)
-	authRouter := routes.NewAuthRouter(authService, unSecureRouter)
+	userStorage := user.NewUserRepo(database)
+	userService := user.NewUserService(userStorage)
+	userRouter := user.NewUserRouter(userService, secureRouter)
 
-	server := NewServer(router, productRouter, userRouter, authRouter)
+	authService := auth.NewAuthService(userService)
+	authRouter := auth.NewAuthRouter(authService, unSecureRouter)
+
+	// =========== middleware ===========
 
 	secureRouter.Use(func(h http.Handler) http.Handler {
-		return middleware.AuthMiddleware(userService, h)
+		return auth.AuthMiddleware(userService, h)
 	})
+
+	server := NewServer(router, productRouter, userRouter, authRouter)
 
 	server.ListenAndServe()
 }

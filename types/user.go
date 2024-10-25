@@ -1,7 +1,7 @@
 package types
 
 import (
-	"alura-go-base/app/errors"
+	"alura-go-base/errors"
 	"net/http"
 )
 
@@ -46,6 +46,6 @@ type IUserService interface {
 }
 
 type IUserRouter interface {
-	Handler
+	IHandler
 	HandleLogout(w http.ResponseWriter, r *http.Request)
 }

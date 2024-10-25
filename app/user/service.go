@@ -1,7 +1,7 @@
-package services
+package user
 
 import (
-	"alura-go-base/app/errors"
+	"alura-go-base/errors"
 	"alura-go-base/types"
 	"net/http"
 )

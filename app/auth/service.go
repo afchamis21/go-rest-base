@@ -1,13 +1,13 @@
-package services
+package auth
 
 import (
-	"alura-go-base/app/errors"
+	"alura-go-base/errors"
 	"alura-go-base/types"
 	"net/http"
 )
 
 type AuthService struct {
-	userService UserService
+	userService types.IUserService
 }
 
 // AuthenticateUser implements types.IAuthService.
@@ -41,6 +41,6 @@ func (a *AuthService) GetUserIDFromToken(token string) (int, error) {
 	panic("unimplemented")
 }
 
-func NewAuthService(userService UserService) *AuthService {
+func NewAuthService(userService types.IUserService) *AuthService {
 	return &AuthService{userService: userService}
 }

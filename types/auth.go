@@ -1,7 +1,7 @@
 package types
 
 import (
-	"alura-go-base/app/errors"
+	"alura-go-base/errors"
 	"net/http"
 )
 
@@ -12,7 +12,7 @@ type IAuthService interface {
 }
 
 type IAuthRouter interface {
-	Handler
+	IHandler
 	HandleRegisterUser(w http.ResponseWriter, r *http.Request)
 	HandleAuthenticateUser(w http.ResponseWriter, r *http.Request)
 }

@@ -1,4 +1,4 @@
-package routes
+package product
 
 import (
 	"alura-go-base/types"
