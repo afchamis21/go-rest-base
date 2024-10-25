@@ -1,8 +1,8 @@
 package auth
 
 import (
-	"alura-go-base/types"
-	"alura-go-base/util"
+	"alura-rest-base/types"
+	"alura-rest-base/util"
 	"net/http"
 )
 

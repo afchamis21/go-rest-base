@@ -1,7 +1,7 @@
 package types
 
 import (
-	"alura-go-base/errors"
+	"alura-rest-base/errors"
 	"net/http"
 )
 

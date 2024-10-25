@@ -1,7 +1,7 @@
 package db
 
 import (
-	"alura-go-base/config"
+	"alura-rest-base/config"
 	"database/sql"
 
 	_ "github.com/lib/pq"

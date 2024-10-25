@@ -1,4 +1,4 @@
-module alura-go-base
+module alura-rest-base
 
 go 1.22.5
 

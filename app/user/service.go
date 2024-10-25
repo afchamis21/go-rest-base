@@ -1,8 +1,8 @@
 package user
 
 import (
-	"alura-go-base/errors"
-	"alura-go-base/types"
+	"alura-rest-base/errors"
+	"alura-rest-base/types"
 	"net/http"
 )
 

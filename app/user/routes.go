@@ -1,7 +1,7 @@
 package user
 
 import (
-	"alura-go-base/types"
+	"alura-rest-base/types"
 	"net/http"
 
 	"github.com/gorilla/mux"

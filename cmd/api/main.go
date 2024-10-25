@@ -1,12 +1,12 @@
 package main
 
 import (
-	"alura-go-base/app/auth"
-	"alura-go-base/app/product"
-	"alura-go-base/app/user"
-	"alura-go-base/config"
-	"alura-go-base/db"
-	"alura-go-base/types"
+	"alura-rest-base/app/auth"
+	"alura-rest-base/app/product"
+	"alura-rest-base/app/user"
+	"alura-rest-base/config"
+	"alura-rest-base/db"
+	"alura-rest-base/types"
 	"fmt"
 	"log"
 	"net/http"
