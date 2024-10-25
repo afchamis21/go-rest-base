@@ -4,6 +4,8 @@ import (
 	"alura-rest-base/errors"
 	"alura-rest-base/types"
 	"net/http"
+
+	"golang.org/x/crypto/bcrypt"
 )
 
 type UserService struct {
@@ -32,14 +34,19 @@ func (u *UserService) GetUserByEmail(email string) (*types.User, *errors.HttpErr
 
 // CreateUser implements types.IUserService.
 func (u *UserService) CreateUser(payload types.CreateUserPayload) (*types.User, *errors.HttpError) {
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(payload.Password), bcrypt.DefaultCost)
+	if err != nil {
+		return nil, errors.New500Error(err)
+	}
+
 	user := &types.User{
 		Email:     payload.Email,
-		Password:  payload.Password, // TODO hash password
+		Password:  string(hashedPassword), // TODO hash password
 		FirstName: payload.FirstName,
 		LastName:  payload.LastName,
 	}
 
-	err := u.storage.CreateUser(user)
+	err = u.storage.CreateUser(user)
 	if err != nil {
 		return nil, errors.New500Error(err)
 	}

@@ -62,7 +62,7 @@ func main() {
 	userRouter := user.NewUserRouter(userService, secureRouter)
 
 	authService := auth.NewAuthService(userService)
-	authRouter := auth.NewAuthRouter(authService, unSecureRouter)
+	authRouter := auth.NewAuthRouter(unSecureRouter, authService, userService)
 
 	// =========== middleware ===========
 

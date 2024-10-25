@@ -6,9 +6,9 @@ import (
 )
 
 type User struct {
-	ID        int    `json:"-"`
+	ID        int    `json:"id"`
 	Email     string `json:"email"`
-	Password  string `json:"password"`
+	Password  string `json:"-"`
 	FirstName string `json:"firstName"`
 	LastName  string `json:"lastName"`
 }
@@ -18,16 +18,6 @@ type CreateUserPayload struct {
 	Password  string `json:"password" validate:"required"`
 	FirstName string `json:"firstName" validate:"required"`
 	LastName  string `json:"lastName" validate:"required"`
-}
-
-type AuthenticateUserPayload struct {
-	Email    string `json:"email" validate:"required,email"`
-	Password string `json:"password" validate:"required"`
-}
-
-type AuthenticateUserResponse struct {
-	User  User
-	Token string
 }
 
 type IUserRepo interface {
