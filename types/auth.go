@@ -6,8 +6,8 @@ import (
 )
 
 type IAuthService interface {
-	CreateUser(payload CreateProductPayload) (*User, errors.HttpError)
-	AuthenticateUser(payload AuthenticateUserPayload) (AuthenticateUserResponse, errors.HttpError)
+	CreateUser(payload CreateUserPayload) (*User, *errors.HttpError)
+	AuthenticateUser(payload AuthenticateUserPayload) (*AuthenticateUserResponse, *errors.HttpError)
 	GetUserIDFromToken(token string) (int, error)
 }
 

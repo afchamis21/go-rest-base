@@ -38,14 +38,14 @@ type IUserRepo interface {
 }
 
 type IUserService interface {
-	CreateUser(payload CreateProductPayload) (*User, errors.HttpError)
-	DeleteUser(id int) errors.HttpError
-	GetUserByID(id int) errors.HttpError
-	Logout() errors.HttpError
+	CreateUser(payload CreateUserPayload) (*User, *errors.HttpError)
+	DeleteUser(id int) *errors.HttpError
+	GetUserByID(id int) (*User, *errors.HttpError)
+	GetUserByEmail(email string) (*User, *errors.HttpError)
+	Logout() *errors.HttpError
 }
 
 type IUserRouter interface {
 	Handler
-	HandleDeleteUser(w http.ResponseWriter, r *http.Request)
 	HandleLogout(w http.ResponseWriter, r *http.Request)
 }

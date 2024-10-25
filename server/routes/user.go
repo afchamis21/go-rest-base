@@ -13,26 +13,13 @@ type UserRouter struct {
 
 // RegisterHandlers implements types.IUserRouter.
 func (u *UserRouter) RegisterHandlers(router *mux.Router) {
-	panic("unimplemented")
-}
+	subRouter := router.PathPrefix("/user").Subrouter()
 
-// HandleAuthenticateUser implements types.IUserRouter.
-func (u *UserRouter) HandleAuthenticateUser(w http.ResponseWriter, r *http.Request) {
-	panic("unimplemented")
-}
-
-// HandleDeleteUser implements types.IUserRouter.
-func (u *UserRouter) HandleDeleteUser(w http.ResponseWriter, r *http.Request) {
-	panic("unimplemented")
+	subRouter.HandleFunc("/logout", u.HandleLogout).Methods(http.MethodPost)
 }
 
 // HandleLogout implements types.IUserRouter.
 func (u *UserRouter) HandleLogout(w http.ResponseWriter, r *http.Request) {
-	panic("unimplemented")
-}
-
-// HandleRegisterUser implements types.IUserRouter.
-func (u *UserRouter) HandleRegisterUser(w http.ResponseWriter, r *http.Request) {
 	panic("unimplemented")
 }
 

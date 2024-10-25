@@ -23,7 +23,10 @@ func (a *AuthRouter) HandleRegisterUser(w http.ResponseWriter, r *http.Request) 
 
 // RegisterHandlers implements types.IAuthRouter.
 func (a *AuthRouter) RegisterHandlers(router *mux.Router) {
-	panic("unimplemented")
+	subRouter := router.PathPrefix("/auth").Subrouter()
+
+	subRouter.HandleFunc("/login", a.HandleAuthenticateUser).Methods(http.MethodPost)
+	subRouter.HandleFunc("/register", a.HandleRegisterUser).Methods(http.MethodGet)
 }
 
 func NewAuthRouter(authService types.IAuthService, router *mux.Router) *AuthRouter {
