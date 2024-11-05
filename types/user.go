@@ -2,7 +2,6 @@ package types
 
 import (
 	"alura-rest-base/errors"
-	"net/http"
 )
 
 type User struct {
@@ -32,10 +31,4 @@ type IUserService interface {
 	DeleteUser(id int) *errors.HttpError
 	GetUserByID(id int) (*User, *errors.HttpError)
 	GetUserByEmail(email string) (*User, *errors.HttpError)
-	Logout() *errors.HttpError
-}
-
-type IUserRouter interface {
-	IHandler
-	HandleLogout(w http.ResponseWriter, r *http.Request)
 }

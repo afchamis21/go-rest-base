@@ -19,7 +19,6 @@ type Server struct {
 	Host          string
 	Router        *mux.Router
 	ProductRouter types.IProductRouter
-	UserRouter    types.IUserRouter
 	AuthRouter    types.IAuthRouter
 }
 
@@ -31,7 +30,6 @@ func (s Server) ListenAndServe() {
 func NewServer(
 	router *mux.Router,
 	productRouter types.IProductRouter,
-	userRouter types.IUserRouter,
 	authRouter types.IAuthRouter,
 ) *Server {
 	return &Server{
@@ -39,7 +37,6 @@ func NewServer(
 		Host:          config.Envs.PublicHost,
 		Router:        router,
 		ProductRouter: productRouter,
-		UserRouter:    userRouter,
 		AuthRouter:    authRouter,
 	}
 }
@@ -59,7 +56,6 @@ func main() {
 
 	userStorage := user.NewUserRepo(database)
 	userService := user.NewUserService(userStorage)
-	userRouter := user.NewUserRouter(userService, secureRouter)
 
 	authService := auth.NewAuthService(userService)
 	authRouter := auth.NewAuthRouter(unSecureRouter, authService, userService)
@@ -67,10 +63,10 @@ func main() {
 	// =========== middleware ===========
 
 	secureRouter.Use(func(h http.Handler) http.Handler {
-		return auth.AuthMiddleware(userService, h)
+		return auth.AuthMiddleware(authService, h)
 	})
 
-	server := NewServer(router, productRouter, userRouter, authRouter)
+	server := NewServer(router, productRouter, authRouter)
 
 	server.ListenAndServe()
 }

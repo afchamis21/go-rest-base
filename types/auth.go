@@ -7,7 +7,7 @@ import (
 
 type IAuthService interface {
 	AuthenticateUser(payload AuthenticateUserPayload) (*AuthenticateUserResponse, *errors.HttpError)
-	GetUserIDFromToken(token string) (int, error)
+	GetUserIDFromToken(token string) (int, *errors.HttpError)
 }
 
 type IAuthRouter interface {

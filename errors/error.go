@@ -23,6 +23,6 @@ func NewHttpError(statusCode int, message string) *HttpError {
 }
 
 func New500Error(err error) *HttpError {
-	log.Println("An internal server error happened while searching coupons", err.Error())
+	log.Println("An internal server error happened", err.Error())
 	return NewHttpError(http.StatusInternalServerError, "an unknown error has occurred")
 }

@@ -65,11 +65,6 @@ func (u *UserService) DeleteUser(id int) *errors.HttpError {
 	return nil
 }
 
-// Logout implements types.IUserService.
-func (u *UserService) Logout() *errors.HttpError {
-	panic("unimplemented")
-}
-
 func NewUserService(storage types.IUserRepo) *UserService {
 	return &UserService{storage: storage}
 }

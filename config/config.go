@@ -20,20 +20,23 @@ type Config struct {
 	DbPort    int
 	DbHost    string
 	DbSslMode string
+
+	AuthTokenSecret string
 }
 
 func initConfig() Config {
 	godotenv.Load()
 
 	return Config{
-		PublicHost: getEnv("PUBLIC_HOST", "localhost"),
-		Port:       getEnvInt("PORT", 8080),
-		DbUser:     getEnv("DB_USER", "root"),
-		DbPass:     getEnv("DB_PASS", "pass"),
-		DbName:     getEnv("DB_NAME", "postgres"),
-		DbPort:     getEnvInt("DB_PORT", 5432),
-		DbHost:     getEnv("DB_HOST", "localhost"),
-		DbSslMode:  getEnv("DB_SSL_MODE", "disable"),
+		PublicHost:      getEnv("PUBLIC_HOST", "localhost"),
+		Port:            getEnvInt("PORT", 8080),
+		DbUser:          getEnv("DB_USER", "root"),
+		DbPass:          getEnv("DB_PASS", "pass"),
+		DbName:          getEnv("DB_NAME", "postgres"),
+		DbPort:          getEnvInt("DB_PORT", 5432),
+		DbHost:          getEnv("DB_HOST", "localhost"),
+		DbSslMode:       getEnv("DB_SSL_MODE", "disable"),
+		AuthTokenSecret: getEnv("AUTH_TOKEN_SECRET", "abc"),
 	}
 }
 
